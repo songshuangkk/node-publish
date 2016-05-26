@@ -85,6 +85,12 @@
 	  }
 
 	  (0, _createClass3.default)(Index, [{
+	    key: 'doLogin',
+	    value: function doLogin() {
+	      debugger;
+	      console.log(this);
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
@@ -104,7 +110,7 @@
 	          null,
 	          _react2.default.createElement(
 	            'form',
-	            null,
+	            { onSubmit: this.doLogin },
 	            _react2.default.createElement(
 	              'div',
 	              null,
@@ -113,7 +119,7 @@
 	                null,
 	                '用户名'
 	              ),
-	              _react2.default.createElement('input', null)
+	              _react2.default.createElement('input', { ref: 'username' })
 	            ),
 	            _react2.default.createElement(
 	              'div',
@@ -123,12 +129,16 @@
 	                null,
 	                '密码'
 	              ),
-	              _react2.default.createElement('input', null)
+	              _react2.default.createElement('input', { ref: 'password' })
 	            ),
 	            _react2.default.createElement(
 	              'div',
 	              null,
-	              _react2.default.createElement('input', { type: 'submit', name: '登入' })
+	              _react2.default.createElement(
+	                'button',
+	                { type: 'submit' },
+	                '登入'
+	              )
 	            )
 	          )
 	        )
