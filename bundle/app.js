@@ -74,6 +74,10 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _common = __webpack_require__(254);
+
+	var _common2 = _interopRequireDefault(_common);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var Index = function (_Component) {
@@ -87,8 +91,14 @@
 	  (0, _createClass3.default)(Index, [{
 	    key: 'doLogin',
 	    value: function doLogin() {
-	      debugger;
-	      console.log(this);
+	      var refs = this.refs;
+	      var username = refs.username.value;
+	      var password = refs.password.value;
+	      var data = {
+	        userName: username,
+	        passWord: password
+	      };
+	      _common2.default.postMethod('/login', data, function (val) {});
 	    }
 	  }, {
 	    key: 'render',
@@ -109,36 +119,32 @@
 	          'div',
 	          null,
 	          _react2.default.createElement(
-	            'form',
-	            { onSubmit: this.doLogin },
+	            'div',
+	            null,
 	            _react2.default.createElement(
-	              'div',
+	              'span',
 	              null,
-	              _react2.default.createElement(
-	                'span',
-	                null,
-	                '用户名'
-	              ),
-	              _react2.default.createElement('input', { ref: 'username' })
+	              '用户名'
 	            ),
+	            _react2.default.createElement('input', { ref: 'username' })
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            null,
 	            _react2.default.createElement(
-	              'div',
+	              'span',
 	              null,
-	              _react2.default.createElement(
-	                'span',
-	                null,
-	                '密码'
-	              ),
-	              _react2.default.createElement('input', { ref: 'password' })
+	              '密码'
 	            ),
+	            _react2.default.createElement('input', { ref: 'password' })
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            null,
 	            _react2.default.createElement(
-	              'div',
-	              null,
-	              _react2.default.createElement(
-	                'button',
-	                { type: 'submit' },
-	                '登入'
-	              )
+	              'button',
+	              { type: 'submit', onClick: this.doLogin.bind(this) },
+	              '登入'
 	            )
 	          )
 	        )
@@ -21950,6 +21956,81 @@
 
 	module.exports = onlyChild;
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(89)))
+
+/***/ },
+/* 254 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _stringify = __webpack_require__(255);
+
+	var _stringify2 = _interopRequireDefault(_stringify);
+
+	var _classCallCheck2 = __webpack_require__(27);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(28);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Common = function () {
+	  function Common() {
+	    (0, _classCallCheck3.default)(this, Common);
+	  }
+
+	  (0, _createClass3.default)(Common, [{
+	    key: 'getMethod',
+	    value: function getMethod(url, data, callback) {
+	      fetch(url, {
+	        'method': 'GET',
+	        'body': data
+	      }).then(function (value) {
+	        callback(value);
+	      });
+	    }
+	  }, {
+	    key: 'postMethod',
+	    value: function postMethod(url, data, callback) {
+	      fetch(url, {
+	        method: 'POST',
+	        headers: {
+	          'Accept': 'application/json',
+	          'Content-Type': 'application/json'
+	        },
+	        body: (0, _stringify2.default)(data)
+	      }).then(function (value) {
+	        callback(value);
+	      });
+	    }
+	  }]);
+	  return Common;
+	}();
+
+	exports.default = new Common();
+
+/***/ },
+/* 255 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = { "default": __webpack_require__(256), __esModule: true };
+
+/***/ },
+/* 256 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var core  = __webpack_require__(14)
+	  , $JSON = core.JSON || (core.JSON = {stringify: JSON.stringify});
+	module.exports = function stringify(it){ // eslint-disable-line no-unused-vars
+	  return $JSON.stringify.apply($JSON, arguments);
+	};
 
 /***/ }
 /******/ ]);
