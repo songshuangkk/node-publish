@@ -18,6 +18,9 @@ render(app, {
   cache: false,
   debug: true,
 });
+// To connect MySql
+require('./db/index');
+
 app.use(server(path.join(__dirname, '../../bundle')));
 
 app.use(router.routes());

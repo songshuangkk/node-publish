@@ -29,6 +29,7 @@
     "koa-router": "^5.4.0",
     "koa-static": "^2.0.0",
     "log4js": "^0.6.36",
+    "mysql": "^2.10.2",
     "react": "^15.1.0",
     "react-dom": "^15.1.0",
     "style-loader": "^0.13.1",

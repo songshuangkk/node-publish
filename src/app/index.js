@@ -4,7 +4,27 @@ import React, {Component, PropTypes} from 'react';
 class Index extends Component {
   render() {
     return(
-      <div>Hello World</div>);
+      <div>
+        <div>
+          <div>登入</div>
+        </div>
+        <div>
+          <form>
+            <div>
+              <span>用户名</span>
+              <input></input>
+            </div>
+            <div>
+              <span>密码</span>
+              <input></input>
+            </div>
+            <div>
+              <input type="submit" name="登入"/>
+            </div>
+          </form>
+        </div>
+      </div>
+    );
   };
 }
 

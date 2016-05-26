@@ -90,7 +90,48 @@
 	      return _react2.default.createElement(
 	        'div',
 	        null,
-	        'Hello World'
+	        _react2.default.createElement(
+	          'div',
+	          null,
+	          _react2.default.createElement(
+	            'div',
+	            null,
+	            '登入'
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          null,
+	          _react2.default.createElement(
+	            'form',
+	            null,
+	            _react2.default.createElement(
+	              'div',
+	              null,
+	              _react2.default.createElement(
+	                'span',
+	                null,
+	                '用户名'
+	              ),
+	              _react2.default.createElement('input', null)
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              null,
+	              _react2.default.createElement(
+	                'span',
+	                null,
+	                '密码'
+	              ),
+	              _react2.default.createElement('input', null)
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              null,
+	              _react2.default.createElement('input', { type: 'submit', name: '登入' })
+	            )
+	          )
+	        )
 	      );
 	    }
 	  }]);
