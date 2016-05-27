@@ -98,7 +98,9 @@
 	        userName: username,
 	        passWord: password
 	      };
-	      _common2.default.postMethod('/login', data, function (val) {});
+	      _common2.default.postMethod('/login', data, function (val) {
+	        console.log(val);
+	      });
 	    }
 	  }, {
 	    key: 'render',
@@ -21993,6 +21995,8 @@
 	        'method': 'GET',
 	        'body': data
 	      }).then(function (value) {
+	        return value.json();
+	      }).then(function (value) {
 	        callback(value);
 	      });
 	    }
@@ -22006,6 +22010,8 @@
 	          'Content-Type': 'application/json'
 	        },
 	        body: (0, _stringify2.default)(data)
+	      }).then(function (value) {
+	        return value.json();
 	      }).then(function (value) {
 	        callback(value);
 	      });

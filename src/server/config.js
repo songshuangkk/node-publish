@@ -4,6 +4,6 @@ export default {
     host: '192.168.99.100',
     user: 'root',
     password: '123456',
-    database: 'self_db'
+    database: 'node_publish'
   }
 }

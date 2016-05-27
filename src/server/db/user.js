@@ -2,12 +2,15 @@ import DB from './index';
 import log4js from 'log4js';
 
 class User {
-  queryUser(username, password) {
-    DB.query('SELECT * FROM user WHERE user_name = ' + username + ' and pwssowrd = ' + password, (err) {
+  queryUser(query) {
+    console.log(query);
+    DB.query('SELECT * FROM `user` WHERE `user_name` = "' + query.userName + '"', (err, rows, fields)=>{
       if (err) {
-        logger.error('Query user information error');
+        logger.error('Query user information error', err);
       }
-    });
+      // Query Success!
+      console.log('The result is :', rows);
+    })
   }
 }
 

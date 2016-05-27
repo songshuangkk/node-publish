@@ -3,7 +3,11 @@ class Common {
     fetch(url, {
       'method': 'GET',
       'body': data
-    }).then((value) => {callback(value)});
+    }).then((value) => {
+      return value.json();
+    }).then((value) => {
+      callback(value);
+    })
   }
 
   postMethod(url, data, callback) {
@@ -15,8 +19,10 @@ class Common {
       },
       body: JSON.stringify(data)
     }).then((value) => {
+      return value.json();
+    }).then((value) => {
       callback(value);
-    })
+    });
   }
 }
 

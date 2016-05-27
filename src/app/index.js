@@ -13,6 +13,7 @@ class Index extends Component {
       passWord: password
     }
     Common.postMethod('/login', data, (val) => {
+      console.log(val);
     })
   }
 
