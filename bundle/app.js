@@ -78,7 +78,18 @@
 
 	var _common2 = _interopRequireDefault(_common);
 
+	var _headTop = __webpack_require__(257);
+
+	var _headTop2 = _interopRequireDefault(_headTop);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Style = {
+	  'loginbox': { 'marginTop': '50px' },
+	  'loginAlert': { 'display': 'none' },
+	  'inputGroup': { 'marginBottom': '25px' },
+	  'panel': { 'marginTop': '40px' }
+	};
 
 	var Index = function (_Component) {
 	  (0, _inherits3.default)(Index, _Component);
@@ -108,45 +119,78 @@
 	      return _react2.default.createElement(
 	        'div',
 	        null,
+	        _react2.default.createElement(_headTop2.default, null),
 	        _react2.default.createElement(
 	          'div',
-	          null,
+	          { className: 'container' },
 	          _react2.default.createElement(
 	            'div',
-	            null,
-	            '登入'
-	          )
-	        ),
-	        _react2.default.createElement(
-	          'div',
-	          null,
-	          _react2.default.createElement(
-	            'div',
-	            null,
+	            { id: 'loginbox', style: Style.loginbox, className: 'mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2' },
 	            _react2.default.createElement(
-	              'span',
-	              null,
-	              '用户名'
-	            ),
-	            _react2.default.createElement('input', { ref: 'username' })
-	          ),
-	          _react2.default.createElement(
-	            'div',
-	            null,
-	            _react2.default.createElement(
-	              'span',
-	              null,
-	              '密码'
-	            ),
-	            _react2.default.createElement('input', { ref: 'password' })
-	          ),
-	          _react2.default.createElement(
-	            'div',
-	            null,
-	            _react2.default.createElement(
-	              'button',
-	              { type: 'submit', onClick: this.doLogin.bind(this) },
-	              '登入'
+	              'div',
+	              { className: 'panel panel-info', style: Style.panel },
+	              _react2.default.createElement(
+	                'div',
+	                { className: 'panel-heading' },
+	                _react2.default.createElement(
+	                  'div',
+	                  { className: 'panel-title' },
+	                  ' 登录'
+	                )
+	              ),
+	              _react2.default.createElement(
+	                'div',
+	                { style: Style.panelBody, className: 'panel-body' },
+	                _react2.default.createElement('div', { style: Style.loginAlert, id: 'login-alert', className: 'alert alert-danger col-sm-12' }),
+	                _react2.default.createElement(
+	                  'form',
+	                  { id: 'loginform', className: 'form-horizontal', role: 'form', action: '', method: 'POST' },
+	                  _react2.default.createElement(
+	                    'div',
+	                    { className: 'alert alert-danger', role: 'alert' },
+	                    _react2.default.createElement('span', { className: 'glyphicon glyphicon-exclamation-sign', 'aria-hidden': 'true' }),
+	                    _react2.default.createElement('span', { className: 'sr-only' })
+	                  ),
+	                  _react2.default.createElement(
+	                    'div',
+	                    { style: Style.inputGroup, className: 'input-group' },
+	                    _react2.default.createElement(
+	                      'span',
+	                      { className: 'input-group-addon' },
+	                      _react2.default.createElement('i', { className: 'icon-user' })
+	                    ),
+	                    _react2.default.createElement('input', { id: 'login-username', type: 'text', className: 'form-control', name: 'username', value: '', placeholder: '用户名' })
+	                  ),
+	                  _react2.default.createElement(
+	                    'div',
+	                    { style: Style.inputGroup, className: 'input-group' },
+	                    _react2.default.createElement(
+	                      'span',
+	                      { className: 'input-group-addon' },
+	                      _react2.default.createElement('i', { className: 'icon-key' })
+	                    ),
+	                    _react2.default.createElement('input', { id: 'login-password', type: 'password', className: 'form-control', name: 'password',
+	                      placeholder: '密码' })
+	                  ),
+	                  _react2.default.createElement(
+	                    'div',
+	                    { className: 'input-group' },
+	                    _react2.default.createElement(
+	                      'div',
+	                      { className: 'form-group' },
+	                      _react2.default.createElement(
+	                        'div',
+	                        { className: 'col-sm-12 controls' },
+	                        _react2.default.createElement(
+	                          'button',
+	                          { id: 'btn-login', type: 'submit', className: 'btn btn-success' },
+	                          ' 登录 '
+	                        )
+	                      )
+	                    )
+	                  )
+	                )
+	              )
 	            )
 	          )
 	        )
@@ -22037,6 +22081,230 @@
 	module.exports = function stringify(it){ // eslint-disable-line no-unused-vars
 	  return $JSON.stringify.apply($JSON, arguments);
 	};
+
+/***/ },
+/* 257 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _getPrototypeOf = __webpack_require__(1);
+
+	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+	var _classCallCheck2 = __webpack_require__(27);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(28);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	var _possibleConstructorReturn2 = __webpack_require__(32);
+
+	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+	var _inherits2 = __webpack_require__(79);
+
+	var _inherits3 = _interopRequireDefault(_inherits2);
+
+	var _react = __webpack_require__(248);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Style = {
+	  'a': { 'color': '#f93' }
+	}; /*
+	   * 用于定义头部导航栏
+	   */
+
+
+	var HeadTop = function (_Component) {
+	  (0, _inherits3.default)(HeadTop, _Component);
+
+	  function HeadTop() {
+	    (0, _classCallCheck3.default)(this, HeadTop);
+	    return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(HeadTop).apply(this, arguments));
+	  }
+
+	  (0, _createClass3.default)(HeadTop, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'nav',
+	        { className: 'navbar navbar-inverse navbar-fixed-top' },
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'container' },
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'navbar-header' },
+	            _react2.default.createElement(
+	              'button',
+	              { type: 'button', className: 'navbar-toggle collapsed', 'data-toggle': 'collapse', 'data-target': '#navbar',
+	                'aria-expanded': 'false', 'aria-controls': 'navbar' },
+	              _react2.default.createElement(
+	                'span',
+	                { className: 'sr-only' },
+	                'Toggle navigation'
+	              ),
+	              _react2.default.createElement('span', { className: 'icon-bar' }),
+	              _react2.default.createElement('span', { className: 'icon-bar' }),
+	              _react2.default.createElement('span', { className: 'icon-bar' })
+	            ),
+	            _react2.default.createElement(
+	              'a',
+	              { className: 'navbar-brand', href: '#' },
+	              '后台系统管理',
+	              _react2.default.createElement(
+	                'sup',
+	                { style: Style.a },
+	                'beta'
+	              )
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { id: 'navbar', className: 'navbar-collapse collapse' },
+	            _react2.default.createElement(
+	              'ul',
+	              { className: 'nav navbar-nav' },
+	              _react2.default.createElement(
+	                'li',
+	                { className: 'active' },
+	                _react2.default.createElement(
+	                  'a',
+	                  { href: '/' },
+	                  ' 首页 '
+	                )
+	              ),
+	              _react2.default.createElement(
+	                'li',
+	                { className: 'dropdown' },
+	                _react2.default.createElement(
+	                  'a',
+	                  { href: '#', className: 'dropdown-toggle', 'data-toggle': 'dropdown', role: 'button', 'aria-expanded': 'false' },
+	                  '环境',
+	                  _react2.default.createElement('span', { className: 'caret' })
+	                ),
+	                _react2.default.createElement(
+	                  'ul',
+	                  { className: 'dropdown-menu', role: 'menu' },
+	                  _react2.default.createElement(
+	                    'li',
+	                    { className: 'dropdown-header' },
+	                    '买好车前台环境'
+	                  ),
+	                  _react2.default.createElement(
+	                    'li',
+	                    null,
+	                    _react2.default.createElement(
+	                      'a',
+	                      { href: 'http://haimaiche.com:8888' },
+	                      '前台部署'
+	                    )
+	                  ),
+	                  _react2.default.createElement('li', { className: 'divider' }),
+	                  _react2.default.createElement(
+	                    'li',
+	                    { className: 'dropdown-header' },
+	                    '买好车后台环境'
+	                  ),
+	                  _react2.default.createElement(
+	                    'li',
+	                    null,
+	                    _react2.default.createElement(
+	                      'a',
+	                      { href: 'http://admin.haimaiche.com:8888/?site=mhc&module=admin' },
+	                      '后台部署'
+	                    )
+	                  ),
+	                  _react2.default.createElement('li', { className: 'divider' }),
+	                  _react2.default.createElement(
+	                    'li',
+	                    { className: 'dropdown-header' },
+	                    '前端环境'
+	                  ),
+	                  _react2.default.createElement(
+	                    'li',
+	                    null,
+	                    _react2.default.createElement(
+	                      'a',
+	                      { href: 'http://haimaiche.com:8888/ue' },
+	                      '前端部署'
+	                    )
+	                  ),
+	                  _react2.default.createElement(
+	                    'li',
+	                    null,
+	                    _react2.default.createElement(
+	                      'a',
+	                      { href: 'http://haimaiche.com:8888/bdpush' },
+	                      '百度数据推送'
+	                    )
+	                  )
+	                )
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'ul',
+	              { className: 'nav navbar-nav navbar-right' },
+	              _react2.default.createElement(
+	                'li',
+	                { className: 'dropdown' },
+	                _react2.default.createElement(
+	                  'a',
+	                  { href: '#', className: 'dropdown-toggle', 'data-toggle': 'dropdown', role: 'button', 'aria-expanded': 'false' },
+	                  _react2.default.createElement('span', { className: 'caret' })
+	                ),
+	                _react2.default.createElement(
+	                  'ul',
+	                  { className: 'dropdown-menu', role: 'menu' },
+	                  _react2.default.createElement(
+	                    'li',
+	                    null,
+	                    _react2.default.createElement(
+	                      'a',
+	                      { href: '{{serverUri}}/auth/change_pwd' },
+	                      '修改密码'
+	                    )
+	                  ),
+	                  _react2.default.createElement(
+	                    'li',
+	                    null,
+	                    _react2.default.createElement(
+	                      'a',
+	                      { href: '{{serverUri}}/auth/logout' },
+	                      '退出登录'
+	                    )
+	                  )
+	                )
+	              ),
+	              _react2.default.createElement(
+	                'li',
+	                null,
+	                _react2.default.createElement(
+	                  'a',
+	                  { href: '{{serverUri}}/auth/login' },
+	                  '登录'
+	                )
+	              )
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }]);
+	  return HeadTop;
+	}(_react.Component);
+
+	exports.default = HeadTop;
 
 /***/ }
 /******/ ]);
