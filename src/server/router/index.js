@@ -10,6 +10,7 @@ routers.get('/', function *(next) {
 routers.post('/login', function *(next) {
   const request = this.request.body;
   User.queryUser(request);
+  this.body = {"OK": "OK"};
 });
 
 

@@ -2,6 +2,7 @@ import ReactDOM from 'react-dom';
 import React, {Component, PropTypes} from 'react';
 import Common from './common';
 import HeadTop from './headTop';
+import Home from './home';
 
 const Style = {
   'loginbox': {'marginTop' : '50px'},
@@ -21,7 +22,8 @@ class Index extends Component {
       passWord: password
     }
     Common.postMethod('/login', data, (val) => {
-      console.log(val);
+      debugger;
+        render((<Home></Home>), document.getElementById('body'));
     })
   }
 
@@ -44,17 +46,17 @@ class Index extends Component {
                   </div>
                   <div style={Style.inputGroup} className="input-group">
                     <span className="input-group-addon"><i className="icon-user"></i></span>
-                    <input id="login-username" type="text" className="form-control" name="username" value="" placeholder="用户名" />
+                    <input className="form-control" ref="username" placeholder="用户名" />
                   </div>
                   <div style={Style.inputGroup} className="input-group">
                     <span className="input-group-addon"><i className="icon-key"></i></span>
-                    <input id="login-password" type="password" className="form-control" name="password"
+                    <input type="password" className="form-control" ref="password"
                       placeholder="密码" />
                   </div>
                   <div className="input-group">
                     <div className="form-group">
                       <div className="col-sm-12 controls">
-                        <button id="btn-login" type="submit" className="btn btn-success"> 登录 </button>
+                        <button id="btn-login" type="submit" onClick={() => {this.doLogin()}} className="btn btn-success"> 登录 </button>
                       </div>
                     </div>
                   </div>

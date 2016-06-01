@@ -82,6 +82,10 @@
 
 	var _headTop2 = _interopRequireDefault(_headTop);
 
+	var _home = __webpack_require__(258);
+
+	var _home2 = _interopRequireDefault(_home);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var Style = {
@@ -110,12 +114,15 @@
 	        passWord: password
 	      };
 	      _common2.default.postMethod('/login', data, function (val) {
-	        console.log(val);
+	        debugger;
+	        render(_react2.default.createElement(_home2.default, null), document.getElementById('body'));
 	      });
 	    }
 	  }, {
 	    key: 'render',
 	    value: function render() {
+	      var _this2 = this;
+
 	      return _react2.default.createElement(
 	        'div',
 	        null,
@@ -159,7 +166,7 @@
 	                      { className: 'input-group-addon' },
 	                      _react2.default.createElement('i', { className: 'icon-user' })
 	                    ),
-	                    _react2.default.createElement('input', { id: 'login-username', type: 'text', className: 'form-control', name: 'username', value: '', placeholder: '用户名' })
+	                    _react2.default.createElement('input', { className: 'form-control', ref: 'username', placeholder: '用户名' })
 	                  ),
 	                  _react2.default.createElement(
 	                    'div',
@@ -169,7 +176,7 @@
 	                      { className: 'input-group-addon' },
 	                      _react2.default.createElement('i', { className: 'icon-key' })
 	                    ),
-	                    _react2.default.createElement('input', { id: 'login-password', type: 'password', className: 'form-control', name: 'password',
+	                    _react2.default.createElement('input', { type: 'password', className: 'form-control', ref: 'password',
 	                      placeholder: '密码' })
 	                  ),
 	                  _react2.default.createElement(
@@ -183,7 +190,9 @@
 	                        { className: 'col-sm-12 controls' },
 	                        _react2.default.createElement(
 	                          'button',
-	                          { id: 'btn-login', type: 'submit', className: 'btn btn-success' },
+	                          { id: 'btn-login', type: 'submit', onClick: function onClick() {
+	                              _this2.doLogin();
+	                            }, className: 'btn btn-success' },
 	                          ' 登录 '
 	                        )
 	                      )
@@ -22305,6 +22314,65 @@
 	}(_react.Component);
 
 	exports.default = HeadTop;
+
+/***/ },
+/* 258 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _getPrototypeOf = __webpack_require__(1);
+
+	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+	var _classCallCheck2 = __webpack_require__(27);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(28);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	var _possibleConstructorReturn2 = __webpack_require__(32);
+
+	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+	var _inherits2 = __webpack_require__(79);
+
+	var _inherits3 = _interopRequireDefault(_inherits2);
+
+	var _react = __webpack_require__(248);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Home = function (_Component) {
+	  (0, _inherits3.default)(Home, _Component);
+
+	  function Home() {
+	    (0, _classCallCheck3.default)(this, Home);
+	    return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Home).apply(this, arguments));
+	  }
+
+	  (0, _createClass3.default)(Home, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        'HaHa'
+	      );
+	    }
+	  }]);
+	  return Home;
+	}(_react.Component);
+
+	exports.default = Home;
 
 /***/ }
 /******/ ]);
