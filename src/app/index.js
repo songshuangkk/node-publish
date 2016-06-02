@@ -4,6 +4,8 @@ import Common from './common';
 import HeadTop from './headTop';
 import Home from './home';
 
+import { Router, Route, hashHistory, Link , browserHistory} from 'react-router'
+
 const Style = {
   'loginbox': {'marginTop' : '50px'},
   'loginAlert': {'display':'none'},
@@ -14,6 +16,7 @@ const Style = {
 class Index extends Component {
 
   doLogin() {
+    event.preventDefault();
     const refs = this.refs;
     const username = refs.username.value;
     const password = refs.password.value;
@@ -22,8 +25,7 @@ class Index extends Component {
       passWord: password
     }
     Common.postMethod('/login', data, (val) => {
-      debugger;
-        render((<Home></Home>), document.getElementById('body'));
+        browserHistory.push("/about");
     })
   }
 
@@ -70,4 +72,8 @@ class Index extends Component {
   }
 }
 
-ReactDOM.render(<Index />, document.getElementById('body'));
+ReactDOM.render((
+  <Router history={hashHistory}>
+    <Route path="/" component={Index}/>
+  </Router>
+), document.getElementById('body'))
