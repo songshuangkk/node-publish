@@ -30,6 +30,7 @@
     "koa-router": "^5.4.0",
     "koa-static": "^2.0.0",
     "log4js": "^0.6.36",
+    "mongoose": "^4.4.19",
     "mysql": "^2.10.2",
     "react": "^15.1.0",
     "react-dom": "^15.1.0",

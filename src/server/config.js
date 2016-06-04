@@ -5,5 +5,11 @@ export default {
     user: 'root',
     password: '123456',
     database: 'node_publish'
+  },
+  MongoDB: {
+    host: '192.168.99.100',
+    user: 'admin',
+    password: '123456',
+    database: ''
   }
 }

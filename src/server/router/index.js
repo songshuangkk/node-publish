@@ -1,5 +1,6 @@
 import router from 'koa-router';
 import User from '../db/user';
+import JavaEnv from '../mongo/models/javaEnv';
 
 const routers = router();
 

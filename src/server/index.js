@@ -23,6 +23,8 @@ render(app, {
 });
 // To connect MySql
 require('./db/index');
+// To connect Mongodb
+require('./mongo/index');
 
 app.use(server(path.join(__dirname, '../../bundle')));
 
