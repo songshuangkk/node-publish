@@ -1,9 +1,20 @@
 import React, {Component, PropTypes} from 'react';
 
+import HeadTop from './headTop';
+import ServerOperatingBtn from './serverOperatingBtn';
+
+const Styles = {
+  'ServerOperatingBtn': {'marginTop': '10px;'},
+  'HeadTop': {'marginBottom': '50px'}
+}
+
 class Home extends Component {
   render() {
     return (
-      <div>HaHa</div>
+      <div>
+        <HeadTop></HeadTop>
+        <ServerOperatingBtn style={Styles.ServerOperatingBtn}></ServerOperatingBtn>
+      </div>
     );
   }
 }
