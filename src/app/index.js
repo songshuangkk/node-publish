@@ -3,6 +3,7 @@ import React, {Component, PropTypes} from 'react';
 import Common from './common';
 import HeadTop from './headTop';
 import Home from './home';
+import Config from './config';
 
 import { Router, Route, hashHistory, Link , browserHistory} from 'react-router'
 
@@ -26,7 +27,7 @@ class Index extends Component {
       passWord: password
     }
     Common.postMethod('/login', data, (val) => {
-        this.context.router.push('/about');
+        this.context.router.push('/home');
     })
   }
 
@@ -80,6 +81,7 @@ Index.contextTypes = {
 ReactDOM.render((
   <Router history={hashHistory}>
     <Route path="/" component={Index}/>
-    <Route path="/about" component={Home}/>
+    <Route path="/home" component={Home}/>
+    <Route path="/config_env" component={Config}/>
   </Router>
 ), document.getElementById('body'))
