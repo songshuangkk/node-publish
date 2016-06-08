@@ -86,7 +86,7 @@
 
 	var _home2 = _interopRequireDefault(_home);
 
-	var _config = __webpack_require__(322);
+	var _config = __webpack_require__(321);
 
 	var _config2 = _interopRequireDefault(_config);
 
@@ -28113,8 +28113,7 @@
 	exports.default = ServerOperatingBtn;
 
 /***/ },
-/* 321 */,
-/* 322 */
+/* 321 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';

@@ -1,6 +1,6 @@
 import router from 'koa-router';
 import User from '../db/user';
-import JavaEnv from '../mongo/models/javaEnv';
+import ConfigService from '../service/configService';
 
 const routers = router();
 
@@ -12,6 +12,8 @@ routers.post('/login', function *(next) {
   const request = this.request.body;
   User.queryUser(request);
   this.body = {OK: "OK"};
+  ConfigService.insert();
+  ConfigService.find();
 });
 
 
