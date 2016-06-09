@@ -9,9 +9,22 @@ const Styles = {
 }
 
 class ServerOperatingBtn extends Component {
-
+  // To build the application
   build() {
     event.preventDefault();
+  }
+
+  // To restart the application
+  restart() {
+
+  }
+  // To show deploy log
+  showDeployLog() {
+    this.context.router.push('/deployLog');
+  }
+  // To show application log
+  showApplicationLog() {
+    this.context.router.push('/applicationLog');
   }
 
   render() {
@@ -47,12 +60,17 @@ class ServerOperatingBtn extends Component {
               </button>
               <button className="btn btn-primary btn-sm" id="btn-restart"
                 data-command-name="restart"
-                data-build-uid=""><i className="icon-step-forward"></i> 重启应用
+                data-build-uid=""
+                onClick={() => {this.restart();}}
+              ><i className="icon-step-forward"></i> 重启应用
               </button>
               <a className="btn btn-primary btn-sm show-log" target="_blank"
-                data-log-file=""><i className="icon-eye-open"></i> 部署日志</a>
+                data-log-file=""
+                onClick={this.showDeployLog()}
+              ><i className="icon-eye-open" ></i> 部署日志</a>
               <a className="btn btn-primary btn-sm show-log" target="_blank"
-                data-log-file=""><i className="icon-eye-open"></i> 应用日志</a>
+                data-log-file="" onClick={this.showApplicationLog()}>
+                <i className="icon-eye-open"></i> 应用日志</a>
             </p>
           </div>
         </div>
@@ -73,6 +91,10 @@ class ServerOperatingBtn extends Component {
       </div>
     );
   }
+}
+
+ServerOperatingBtn.contextTypes = {
+  router: React.PropTypes.object
 }
 
 export default ServerOperatingBtn;

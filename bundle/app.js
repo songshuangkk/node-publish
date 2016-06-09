@@ -90,6 +90,14 @@
 
 	var _config2 = _interopRequireDefault(_config);
 
+	var _deployLog = __webpack_require__(322);
+
+	var _deployLog2 = _interopRequireDefault(_deployLog);
+
+	var _applicationLog = __webpack_require__(323);
+
+	var _applicationLog2 = _interopRequireDefault(_applicationLog);
+
 	var _reactRouter = __webpack_require__(258);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -221,7 +229,9 @@
 	  { history: _reactRouter.hashHistory },
 	  _react2.default.createElement(_reactRouter.Route, { path: '/', component: Index }),
 	  _react2.default.createElement(_reactRouter.Route, { path: '/home', component: _home2.default }),
-	  _react2.default.createElement(_reactRouter.Route, { path: '/config_env', component: _config2.default })
+	  _react2.default.createElement(_reactRouter.Route, { path: '/config_env', component: _config2.default }),
+	  _react2.default.createElement(_reactRouter.Route, { path: '/deployLog', component: _deployLog2.default }),
+	  _react2.default.createElement(_reactRouter.Route, { path: '/applicationLog', component: _applicationLog2.default })
 	), document.getElementById('body'));
 
 /***/ },
@@ -27957,8 +27967,30 @@
 
 	  (0, _createClass3.default)(ServerOperatingBtn, [{
 	    key: 'build',
+
+	    // To build the application
 	    value: function build() {
 	      event.preventDefault();
+	    }
+
+	    // To restart the application
+
+	  }, {
+	    key: 'restart',
+	    value: function restart() {}
+	    // To show deploy log
+
+	  }, {
+	    key: 'showDeployLog',
+	    value: function showDeployLog() {
+	      this.context.router.push('/deployLog');
+	    }
+	    // To show application log
+
+	  }, {
+	    key: 'showApplicationLog',
+	    value: function showApplicationLog() {
+	      this.context.router.push('/applicationLog');
 	    }
 	  }, {
 	    key: 'render',
@@ -28053,21 +28085,27 @@
 	                'button',
 	                { className: 'btn btn-primary btn-sm', id: 'btn-restart',
 	                  'data-command-name': 'restart',
-	                  'data-build-uid': '' },
+	                  'data-build-uid': '',
+	                  onClick: function onClick() {
+	                    _this2.restart();
+	                  }
+	                },
 	                _react2.default.createElement('i', { className: 'icon-step-forward' }),
 	                ' 重启应用'
 	              ),
 	              _react2.default.createElement(
 	                'a',
 	                { className: 'btn btn-primary btn-sm show-log', target: '_blank',
-	                  'data-log-file': '' },
+	                  'data-log-file': '',
+	                  onClick: this.showDeployLog()
+	                },
 	                _react2.default.createElement('i', { className: 'icon-eye-open' }),
 	                ' 部署日志'
 	              ),
 	              _react2.default.createElement(
 	                'a',
 	                { className: 'btn btn-primary btn-sm show-log', target: '_blank',
-	                  'data-log-file': '' },
+	                  'data-log-file': '', onClick: this.showApplicationLog() },
 	                _react2.default.createElement('i', { className: 'icon-eye-open' }),
 	                ' 应用日志'
 	              )
@@ -28110,6 +28148,10 @@
 	  return ServerOperatingBtn;
 	}(_react.Component);
 
+	ServerOperatingBtn.contextTypes = {
+	  router: _react2.default.PropTypes.object
+	};
+
 	exports.default = ServerOperatingBtn;
 
 /***/ },
@@ -28150,6 +28192,10 @@
 
 	var _headTop2 = _interopRequireDefault(_headTop);
 
+	var _common = __webpack_require__(254);
+
+	var _common2 = _interopRequireDefault(_common);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var Styles = {
@@ -28170,11 +28216,30 @@
 
 	  (0, _createClass3.default)(Config, [{
 	    key: 'submitConfig',
-	    value: function submitConfig() {}
+	    value: function submitConfig() {
+	      var _this2 = this;
+
+	      event.preventDefault();
+	      var refs = this.refs;
+
+	      var data = {
+	        javaHome: refs.javaHome.value,
+	        javaOptions: refs.javaOptions.value,
+	        jettyHome: refs.jettyHome.value,
+	        mavenHome: refs.mavenHome.value
+	      };
+	      // To request server to edit the env;
+
+	      _common2.default.postMethod('/editEnv', data, function (result) {
+	        // To do something
+	        alert('OK');
+	        _this2.context.router.push('/home');
+	      });
+	    }
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	      var _this2 = this;
+	      var _this3 = this;
 
 	      return _react2.default.createElement(
 	        'div',
@@ -28244,9 +28309,9 @@
 	                      _react2.default.createElement(
 	                        'button',
 	                        { id: 'btn-login', type: 'submit', onClick: function onClick() {
-	                            _this2.submitConfig();
+	                            _this3.submitConfig();
 	                          }, className: 'btn btn-success' },
-	                        ' 登录 '
+	                        ' 提交 '
 	                      )
 	                    )
 	                  )
@@ -28261,7 +28326,147 @@
 	  return Config;
 	}(_react.Component);
 
+	Config.contextTypes = {
+	  router: _react2.default.PropTypes.object
+	};
+
 	exports.default = Config;
+
+/***/ },
+/* 322 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _getPrototypeOf = __webpack_require__(1);
+
+	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+	var _classCallCheck2 = __webpack_require__(27);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(28);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	var _possibleConstructorReturn2 = __webpack_require__(32);
+
+	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+	var _inherits2 = __webpack_require__(79);
+
+	var _inherits3 = _interopRequireDefault(_inherits2);
+
+	var _react = __webpack_require__(248);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _headTop = __webpack_require__(257);
+
+	var _headTop2 = _interopRequireDefault(_headTop);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var DeployLog = function (_Component) {
+	  (0, _inherits3.default)(DeployLog, _Component);
+
+	  function DeployLog() {
+	    (0, _classCallCheck3.default)(this, DeployLog);
+	    return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(DeployLog).apply(this, arguments));
+	  }
+
+	  (0, _createClass3.default)(DeployLog, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(_headTop2.default, null),
+	        _react2.default.createElement(
+	          'h1',
+	          null,
+	          'DeployLog'
+	        )
+	      );
+	    }
+	  }]);
+	  return DeployLog;
+	}(_react.Component);
+
+	exports.default = DeployLog;
+
+/***/ },
+/* 323 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _getPrototypeOf = __webpack_require__(1);
+
+	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+	var _classCallCheck2 = __webpack_require__(27);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(28);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	var _possibleConstructorReturn2 = __webpack_require__(32);
+
+	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+	var _inherits2 = __webpack_require__(79);
+
+	var _inherits3 = _interopRequireDefault(_inherits2);
+
+	var _react = __webpack_require__(248);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _headTop = __webpack_require__(257);
+
+	var _headTop2 = _interopRequireDefault(_headTop);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var ApplicationLog = function (_Component) {
+	  (0, _inherits3.default)(ApplicationLog, _Component);
+
+	  function ApplicationLog() {
+	    (0, _classCallCheck3.default)(this, ApplicationLog);
+	    return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(ApplicationLog).apply(this, arguments));
+	  }
+
+	  (0, _createClass3.default)(ApplicationLog, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(_headTop2.default, null),
+	        _react2.default.createElement(
+	          'h1',
+	          null,
+	          'ApplicationLog'
+	        )
+	      );
+	    }
+	  }]);
+	  return ApplicationLog;
+	}(_react.Component);
+
+	exports.default = ApplicationLog;
 
 /***/ }
 /******/ ]);

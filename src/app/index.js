@@ -4,6 +4,8 @@ import Common from './common';
 import HeadTop from './headTop';
 import Home from './home';
 import Config from './config';
+import DeployLog from './deployLog';
+import ApplicationLog from './applicationLog';
 
 import { Router, Route, hashHistory, Link , browserHistory} from 'react-router'
 
@@ -83,5 +85,7 @@ ReactDOM.render((
     <Route path="/" component={Index}/>
     <Route path="/home" component={Home}/>
     <Route path="/config_env" component={Config}/>
+    <Route path="/deployLog" component={DeployLog}/>
+    <Route path="/applicationLog" component={ApplicationLog} />
   </Router>
 ), document.getElementById('body'))

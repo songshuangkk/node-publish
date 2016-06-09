@@ -1,5 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import HeadTop from './headTop';
+import Common from './common';
 
 const Styles = {
   'loginbox': {'marginTop' : '50px'},
@@ -16,7 +17,22 @@ class Config extends Component {
   }
 
   submitConfig() {
+    event.preventDefault();
+    let refs = this.refs;
 
+    let data = {
+      javaHome: refs.javaHome.value,
+      javaOptions: refs.javaOptions.value,
+      jettyHome: refs.jettyHome.value,
+      mavenHome: refs.mavenHome.value
+    };
+    // To request server to edit the env;
+
+    Common.postMethod('/editEnv', data, (result)=>{
+      // To do something
+      alert('OK');
+      this.context.router.push('/home');
+    });
   }
 
   render() {
@@ -46,7 +62,7 @@ class Config extends Component {
                   </div>
                   <div className="form-group">
                     <div className="col-sm-12 controls">
-                      <button id="btn-login" type="submit" onClick={() => {this.submitConfig()}} className="btn btn-success"> 登录 </button>
+                      <button id="btn-login" type="submit" onClick={() => {this.submitConfig()}} className="btn btn-success"> 提交 </button>
                     </div>
                   </div>
                 </form>
@@ -59,5 +75,8 @@ class Config extends Component {
   }
 }
 
+Config.contextTypes = {
+  router: React.PropTypes.object
+}
 
 export default Config;

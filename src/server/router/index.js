@@ -16,5 +16,22 @@ routers.post('/login', function *(next) {
   ConfigService.find();
 });
 
+// edit the Java Env
+routers.post('/editEnv', function *(next) {
+  let request = this.request.body;
+  // To Edit Env
+  console.log(request);
+});
+
+// build application
+routers.get('/build', function *(next) {
+
+});
+
+// deploy application
+routers.get('/deploy', function *(next) {
+
+});
+
 
 export default routers;
