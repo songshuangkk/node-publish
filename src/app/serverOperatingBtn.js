@@ -66,10 +66,10 @@ class ServerOperatingBtn extends Component {
               </button>
               <a className="btn btn-primary btn-sm show-log" target="_blank"
                 data-log-file=""
-                onClick={this.showDeployLog()}
+                onClick={() => {this.showDeployLog()}}
               ><i className="icon-eye-open" ></i> 部署日志</a>
               <a className="btn btn-primary btn-sm show-log" target="_blank"
-                data-log-file="" onClick={this.showApplicationLog()}>
+                data-log-file="" onClick={() => {this.showApplicationLog()}}>
                 <i className="icon-eye-open"></i> 应用日志</a>
             </p>
           </div>

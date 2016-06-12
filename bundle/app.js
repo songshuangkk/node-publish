@@ -86,15 +86,15 @@
 
 	var _home2 = _interopRequireDefault(_home);
 
-	var _config = __webpack_require__(321);
+	var _config = __webpack_require__(320);
 
 	var _config2 = _interopRequireDefault(_config);
 
-	var _deployLog = __webpack_require__(322);
+	var _deployLog = __webpack_require__(321);
 
 	var _deployLog2 = _interopRequireDefault(_deployLog);
 
-	var _applicationLog = __webpack_require__(323);
+	var _applicationLog = __webpack_require__(322);
 
 	var _applicationLog2 = _interopRequireDefault(_applicationLog);
 
@@ -27875,7 +27875,7 @@
 
 	var _headTop2 = _interopRequireDefault(_headTop);
 
-	var _serverOperatingBtn = __webpack_require__(320);
+	var _serverOperatingBtn = __webpack_require__(323);
 
 	var _serverOperatingBtn2 = _interopRequireDefault(_serverOperatingBtn);
 
@@ -27891,7 +27891,7 @@
 
 	  function Home() {
 	    (0, _classCallCheck3.default)(this, Home);
-	    return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Home).apply(this, arguments));
+	    return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Home).call(this));
 	  }
 
 	  (0, _createClass3.default)(Home, [{
@@ -27912,6 +27912,320 @@
 
 /***/ },
 /* 320 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _getPrototypeOf = __webpack_require__(1);
+
+	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+	var _classCallCheck2 = __webpack_require__(27);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(28);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	var _possibleConstructorReturn2 = __webpack_require__(32);
+
+	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+	var _inherits2 = __webpack_require__(79);
+
+	var _inherits3 = _interopRequireDefault(_inherits2);
+
+	var _react = __webpack_require__(248);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _headTop = __webpack_require__(257);
+
+	var _headTop2 = _interopRequireDefault(_headTop);
+
+	var _common = __webpack_require__(254);
+
+	var _common2 = _interopRequireDefault(_common);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Styles = {
+	  'loginbox': { 'marginTop': '50px' },
+	  'loginAlert': { 'display': 'none' },
+	  'inputGroup': { 'marginBottom': '25px', 'marginTop': '20px' },
+	  'panel': { 'marginTop': '40px' },
+	  'container': { 'marginTop': '100px' }
+	};
+
+	var Config = function (_Component) {
+	  (0, _inherits3.default)(Config, _Component);
+
+	  function Config() {
+	    (0, _classCallCheck3.default)(this, Config);
+	    return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Config).call(this));
+	  }
+
+	  (0, _createClass3.default)(Config, [{
+	    key: 'submitConfig',
+	    value: function submitConfig() {
+	      var _this2 = this;
+
+	      event.preventDefault();
+	      var refs = this.refs;
+
+	      var data = {
+	        javaHome: refs.javaHome.value,
+	        javaOptions: refs.javaOptions.value,
+	        jettyHome: refs.jettyHome.value,
+	        mavenHome: refs.mavenHome.value
+	      };
+	      // To request server to edit the env;
+
+	      _common2.default.postMethod('/editEnv', data, function (result) {
+	        // To do something
+	        alert('OK');
+	        _this2.context.router.push('/home');
+	      });
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _this3 = this;
+
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(_headTop2.default, null),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'container', style: Styles.container },
+	          _react2.default.createElement(
+	            'div',
+	            { id: 'loginbox', style: Styles.loginbox, className: 'mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2' },
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'panel panel-info', Styles: Styles.panel },
+	              _react2.default.createElement(
+	                'div',
+	                { style: Styles.panelBody, className: 'panel-body' },
+	                _react2.default.createElement(
+	                  'form',
+	                  { id: 'loginform', className: 'form-horizontal', role: 'form', action: '', method: 'POST' },
+	                  _react2.default.createElement(
+	                    'div',
+	                    { style: Styles.inputGroup, className: 'input-group' },
+	                    _react2.default.createElement(
+	                      'span',
+	                      { className: 'input-group-addon' },
+	                      _react2.default.createElement('i', { className: 'icon-user' })
+	                    ),
+	                    _react2.default.createElement('input', { className: 'form-control', ref: 'javaHome', placeholder: 'JAVA_HOME' })
+	                  ),
+	                  _react2.default.createElement(
+	                    'div',
+	                    { style: Styles.inputGroup, className: 'input-group' },
+	                    _react2.default.createElement(
+	                      'span',
+	                      { className: 'input-group-addon' },
+	                      _react2.default.createElement('i', { className: 'icon-key' })
+	                    ),
+	                    _react2.default.createElement('input', { className: 'form-control', ref: 'javaOptions', placeholder: 'JAVA_OPTIONS' })
+	                  ),
+	                  _react2.default.createElement(
+	                    'div',
+	                    { style: Styles.inputGroup, className: 'input-group' },
+	                    _react2.default.createElement(
+	                      'span',
+	                      { className: 'input-group-addon' },
+	                      _react2.default.createElement('i', { className: 'icon-key' })
+	                    ),
+	                    _react2.default.createElement('input', { className: 'form-control', ref: 'jettyHome', placeholder: 'JETTY_HOME' })
+	                  ),
+	                  _react2.default.createElement(
+	                    'div',
+	                    { style: Styles.inputGroup, className: 'input-group' },
+	                    _react2.default.createElement(
+	                      'span',
+	                      { className: 'input-group-addon' },
+	                      _react2.default.createElement('i', { className: 'icon-key' })
+	                    ),
+	                    _react2.default.createElement('input', { className: 'form-control', ref: 'mavenHome', placeholder: 'MAVEN_HOME' })
+	                  ),
+	                  _react2.default.createElement(
+	                    'div',
+	                    { className: 'form-group' },
+	                    _react2.default.createElement(
+	                      'div',
+	                      { className: 'col-sm-12 controls' },
+	                      _react2.default.createElement(
+	                        'button',
+	                        { id: 'btn-login', type: 'submit', onClick: function onClick() {
+	                            _this3.submitConfig();
+	                          }, className: 'btn btn-success' },
+	                        ' 提交 '
+	                      )
+	                    )
+	                  )
+	                )
+	              )
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }]);
+	  return Config;
+	}(_react.Component);
+
+	// Config.contextTypes = {
+	//   router: React.PropTypes.object
+	// }
+
+	exports.default = Config;
+
+/***/ },
+/* 321 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _getPrototypeOf = __webpack_require__(1);
+
+	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+	var _classCallCheck2 = __webpack_require__(27);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(28);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	var _possibleConstructorReturn2 = __webpack_require__(32);
+
+	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+	var _inherits2 = __webpack_require__(79);
+
+	var _inherits3 = _interopRequireDefault(_inherits2);
+
+	var _react = __webpack_require__(248);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _headTop = __webpack_require__(257);
+
+	var _headTop2 = _interopRequireDefault(_headTop);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var DeployLog = function (_Component) {
+	  (0, _inherits3.default)(DeployLog, _Component);
+
+	  function DeployLog() {
+	    (0, _classCallCheck3.default)(this, DeployLog);
+	    return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(DeployLog).apply(this, arguments));
+	  }
+
+	  (0, _createClass3.default)(DeployLog, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(_headTop2.default, null),
+	        _react2.default.createElement(
+	          'h1',
+	          null,
+	          'DeployLog'
+	        )
+	      );
+	    }
+	  }]);
+	  return DeployLog;
+	}(_react.Component);
+
+	exports.default = DeployLog;
+
+/***/ },
+/* 322 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _getPrototypeOf = __webpack_require__(1);
+
+	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+	var _classCallCheck2 = __webpack_require__(27);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(28);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	var _possibleConstructorReturn2 = __webpack_require__(32);
+
+	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+	var _inherits2 = __webpack_require__(79);
+
+	var _inherits3 = _interopRequireDefault(_inherits2);
+
+	var _react = __webpack_require__(248);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _headTop = __webpack_require__(257);
+
+	var _headTop2 = _interopRequireDefault(_headTop);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var ApplicationLog = function (_Component) {
+	  (0, _inherits3.default)(ApplicationLog, _Component);
+
+	  function ApplicationLog() {
+	    (0, _classCallCheck3.default)(this, ApplicationLog);
+	    return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(ApplicationLog).apply(this, arguments));
+	  }
+
+	  (0, _createClass3.default)(ApplicationLog, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(_headTop2.default, null),
+	        _react2.default.createElement(
+	          'h1',
+	          null,
+	          'ApplicationLog'
+	        )
+	      );
+	    }
+	  }]);
+	  return ApplicationLog;
+	}(_react.Component);
+
+	exports.default = ApplicationLog;
+
+/***/ },
+/* 323 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28097,7 +28411,9 @@
 	                'a',
 	                { className: 'btn btn-primary btn-sm show-log', target: '_blank',
 	                  'data-log-file': '',
-	                  onClick: this.showDeployLog()
+	                  onClick: function onClick() {
+	                    _this2.showDeployLog();
+	                  }
 	                },
 	                _react2.default.createElement('i', { className: 'icon-eye-open' }),
 	                ' 部署日志'
@@ -28105,7 +28421,9 @@
 	              _react2.default.createElement(
 	                'a',
 	                { className: 'btn btn-primary btn-sm show-log', target: '_blank',
-	                  'data-log-file': '', onClick: this.showApplicationLog() },
+	                  'data-log-file': '', onClick: function onClick() {
+	                    _this2.showApplicationLog();
+	                  } },
 	                _react2.default.createElement('i', { className: 'icon-eye-open' }),
 	                ' 应用日志'
 	              )
@@ -28153,320 +28471,6 @@
 	};
 
 	exports.default = ServerOperatingBtn;
-
-/***/ },
-/* 321 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _getPrototypeOf = __webpack_require__(1);
-
-	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-	var _classCallCheck2 = __webpack_require__(27);
-
-	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-	var _createClass2 = __webpack_require__(28);
-
-	var _createClass3 = _interopRequireDefault(_createClass2);
-
-	var _possibleConstructorReturn2 = __webpack_require__(32);
-
-	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-	var _inherits2 = __webpack_require__(79);
-
-	var _inherits3 = _interopRequireDefault(_inherits2);
-
-	var _react = __webpack_require__(248);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _headTop = __webpack_require__(257);
-
-	var _headTop2 = _interopRequireDefault(_headTop);
-
-	var _common = __webpack_require__(254);
-
-	var _common2 = _interopRequireDefault(_common);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var Styles = {
-	  'loginbox': { 'marginTop': '50px' },
-	  'loginAlert': { 'display': 'none' },
-	  'inputGroup': { 'marginBottom': '25px', 'marginTop': '20px' },
-	  'panel': { 'marginTop': '40px' },
-	  'container': { 'marginTop': '100px' }
-	};
-
-	var Config = function (_Component) {
-	  (0, _inherits3.default)(Config, _Component);
-
-	  function Config() {
-	    (0, _classCallCheck3.default)(this, Config);
-	    return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Config).call(this));
-	  }
-
-	  (0, _createClass3.default)(Config, [{
-	    key: 'submitConfig',
-	    value: function submitConfig() {
-	      var _this2 = this;
-
-	      event.preventDefault();
-	      var refs = this.refs;
-
-	      var data = {
-	        javaHome: refs.javaHome.value,
-	        javaOptions: refs.javaOptions.value,
-	        jettyHome: refs.jettyHome.value,
-	        mavenHome: refs.mavenHome.value
-	      };
-	      // To request server to edit the env;
-
-	      _common2.default.postMethod('/editEnv', data, function (result) {
-	        // To do something
-	        alert('OK');
-	        _this2.context.router.push('/home');
-	      });
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      var _this3 = this;
-
-	      return _react2.default.createElement(
-	        'div',
-	        null,
-	        _react2.default.createElement(_headTop2.default, null),
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'container', style: Styles.container },
-	          _react2.default.createElement(
-	            'div',
-	            { id: 'loginbox', style: Styles.loginbox, className: 'mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2' },
-	            _react2.default.createElement(
-	              'div',
-	              { className: 'panel panel-info', Styles: Styles.panel },
-	              _react2.default.createElement(
-	                'div',
-	                { style: Styles.panelBody, className: 'panel-body' },
-	                _react2.default.createElement(
-	                  'form',
-	                  { id: 'loginform', className: 'form-horizontal', role: 'form', action: '', method: 'POST' },
-	                  _react2.default.createElement(
-	                    'div',
-	                    { style: Styles.inputGroup, className: 'input-group' },
-	                    _react2.default.createElement(
-	                      'span',
-	                      { className: 'input-group-addon' },
-	                      _react2.default.createElement('i', { className: 'icon-user' })
-	                    ),
-	                    _react2.default.createElement('input', { className: 'form-control', ref: 'javaHome', placeholder: 'JAVA_HOME' })
-	                  ),
-	                  _react2.default.createElement(
-	                    'div',
-	                    { style: Styles.inputGroup, className: 'input-group' },
-	                    _react2.default.createElement(
-	                      'span',
-	                      { className: 'input-group-addon' },
-	                      _react2.default.createElement('i', { className: 'icon-key' })
-	                    ),
-	                    _react2.default.createElement('input', { className: 'form-control', ref: 'javaOptions', placeholder: 'JAVA_OPTIONS' })
-	                  ),
-	                  _react2.default.createElement(
-	                    'div',
-	                    { style: Styles.inputGroup, className: 'input-group' },
-	                    _react2.default.createElement(
-	                      'span',
-	                      { className: 'input-group-addon' },
-	                      _react2.default.createElement('i', { className: 'icon-key' })
-	                    ),
-	                    _react2.default.createElement('input', { className: 'form-control', ref: 'jettyHome', placeholder: 'JETTY_HOME' })
-	                  ),
-	                  _react2.default.createElement(
-	                    'div',
-	                    { style: Styles.inputGroup, className: 'input-group' },
-	                    _react2.default.createElement(
-	                      'span',
-	                      { className: 'input-group-addon' },
-	                      _react2.default.createElement('i', { className: 'icon-key' })
-	                    ),
-	                    _react2.default.createElement('input', { className: 'form-control', ref: 'mavenHome', placeholder: 'MAVEN_HOME' })
-	                  ),
-	                  _react2.default.createElement(
-	                    'div',
-	                    { className: 'form-group' },
-	                    _react2.default.createElement(
-	                      'div',
-	                      { className: 'col-sm-12 controls' },
-	                      _react2.default.createElement(
-	                        'button',
-	                        { id: 'btn-login', type: 'submit', onClick: function onClick() {
-	                            _this3.submitConfig();
-	                          }, className: 'btn btn-success' },
-	                        ' 提交 '
-	                      )
-	                    )
-	                  )
-	                )
-	              )
-	            )
-	          )
-	        )
-	      );
-	    }
-	  }]);
-	  return Config;
-	}(_react.Component);
-
-	Config.contextTypes = {
-	  router: _react2.default.PropTypes.object
-	};
-
-	exports.default = Config;
-
-/***/ },
-/* 322 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _getPrototypeOf = __webpack_require__(1);
-
-	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-	var _classCallCheck2 = __webpack_require__(27);
-
-	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-	var _createClass2 = __webpack_require__(28);
-
-	var _createClass3 = _interopRequireDefault(_createClass2);
-
-	var _possibleConstructorReturn2 = __webpack_require__(32);
-
-	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-	var _inherits2 = __webpack_require__(79);
-
-	var _inherits3 = _interopRequireDefault(_inherits2);
-
-	var _react = __webpack_require__(248);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _headTop = __webpack_require__(257);
-
-	var _headTop2 = _interopRequireDefault(_headTop);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var DeployLog = function (_Component) {
-	  (0, _inherits3.default)(DeployLog, _Component);
-
-	  function DeployLog() {
-	    (0, _classCallCheck3.default)(this, DeployLog);
-	    return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(DeployLog).apply(this, arguments));
-	  }
-
-	  (0, _createClass3.default)(DeployLog, [{
-	    key: 'render',
-	    value: function render() {
-	      return _react2.default.createElement(
-	        'div',
-	        null,
-	        _react2.default.createElement(_headTop2.default, null),
-	        _react2.default.createElement(
-	          'h1',
-	          null,
-	          'DeployLog'
-	        )
-	      );
-	    }
-	  }]);
-	  return DeployLog;
-	}(_react.Component);
-
-	exports.default = DeployLog;
-
-/***/ },
-/* 323 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _getPrototypeOf = __webpack_require__(1);
-
-	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-	var _classCallCheck2 = __webpack_require__(27);
-
-	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-	var _createClass2 = __webpack_require__(28);
-
-	var _createClass3 = _interopRequireDefault(_createClass2);
-
-	var _possibleConstructorReturn2 = __webpack_require__(32);
-
-	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-	var _inherits2 = __webpack_require__(79);
-
-	var _inherits3 = _interopRequireDefault(_inherits2);
-
-	var _react = __webpack_require__(248);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _headTop = __webpack_require__(257);
-
-	var _headTop2 = _interopRequireDefault(_headTop);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var ApplicationLog = function (_Component) {
-	  (0, _inherits3.default)(ApplicationLog, _Component);
-
-	  function ApplicationLog() {
-	    (0, _classCallCheck3.default)(this, ApplicationLog);
-	    return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(ApplicationLog).apply(this, arguments));
-	  }
-
-	  (0, _createClass3.default)(ApplicationLog, [{
-	    key: 'render',
-	    value: function render() {
-	      return _react2.default.createElement(
-	        'div',
-	        null,
-	        _react2.default.createElement(_headTop2.default, null),
-	        _react2.default.createElement(
-	          'h1',
-	          null,
-	          'ApplicationLog'
-	        )
-	      );
-	    }
-	  }]);
-	  return ApplicationLog;
-	}(_react.Component);
-
-	exports.default = ApplicationLog;
 
 /***/ }
 /******/ ]);
