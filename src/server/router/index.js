@@ -18,6 +18,9 @@ routers.post('/login', function *(next) {
 routers.post('/editEnv', function *(next) {
   let request = this.request.body;
   // To Edit Env
+  console.log(ConfigService);
+  ConfigService.update(request);
+  this.body = {OK: "OK"};
 });
 
 // build application

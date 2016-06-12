@@ -26,6 +26,10 @@ class EnvModel {
     });
   }
 
+  update(data) {
+    this.Model.update(data.query, data.updateData, data.cb());
+  }
+
 }
 
 export default new EnvModel();

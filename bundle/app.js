@@ -28082,9 +28082,9 @@
 	  return Config;
 	}(_react.Component);
 
-	// Config.contextTypes = {
-	//   router: React.PropTypes.object
-	// }
+	Config.contextTypes = {
+	  router: _react2.default.PropTypes.object
+	};
 
 	exports.default = Config;
 

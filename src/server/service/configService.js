@@ -6,11 +6,24 @@ class ConfigService {
     EnvModel.find();
   }
 
-  insert() {
-    let data = {title: 'Java Env',
-    language: 'Java',
-    command: 'Test'}
-    EnvModel.insert();
+  insert(data) {
+    EnvModel.insert(data);
+  }
+
+  update(data) {
+    // check is existed
+    let updateData = {
+      query: {name: "JavaEnv"},
+      updateData: data,
+      cb: (error, raw) => {
+        if (error) throw error;
+        if (raw === void 0 || raw === 0) {
+          data.name = "JavaEnv";
+          insert(data);
+        }
+      }
+    }
+    EnvModel.update(updateData);
   }
 }
 
