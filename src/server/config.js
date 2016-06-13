@@ -11,5 +11,6 @@ export default {
     user: 'admin',
     password: '123456',
     database: ''
-  }
+  },
+  SocketPort: 3333
 }
