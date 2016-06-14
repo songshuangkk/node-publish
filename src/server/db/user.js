@@ -3,13 +3,15 @@ import log4js from 'log4js';
 
 class User {
   queryUser(query) {
-    DB.query('SELECT * FROM `user` WHERE `user_name` = "' + query.userName + '"', (err, rows, fields)=>{
-      if (err) {
-        logger.error('Query user information error', err);
-      }
-      // Query Success!
-      console.log('The result is :', rows);
-    })
+    return function* (next) {
+      DB.query('SELECT * FROM `user` WHERE `user_name` = "' + query.userName + '"', (err, rows, fields)=>{
+        if (err) {
+          logger.error('Query user information error', err);
+        }
+        console.log(12121);
+        return rows;
+      })
+    }
   }
 }
 

@@ -10,8 +10,12 @@ routers.get('/', function *(next) {
 
 routers.post('/login', function *(next) {
   const request = this.request.body;
-  User.queryUser(request);
-  this.body = {OK: "OK"};
+  let rows = yield User.queryUser(request)();
+  if (rows === void 0 || rows.length == 0) {
+    this.body = {OK: false}
+  } else {
+    this.body = {OK: true};
+  }
 });
 
 // edit the Java Env
