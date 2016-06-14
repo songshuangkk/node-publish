@@ -8,7 +8,6 @@ class User {
         if (err) {
           logger.error('Query user information error', err);
         }
-        console.log(12121);
         return rows;
       })
     }

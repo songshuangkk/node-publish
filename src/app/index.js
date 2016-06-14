@@ -19,6 +19,14 @@ const Styles = {
 
 class Index extends Component {
 
+  constructor() {
+    super();
+  }
+
+  chageLoginAlertState() {
+    Styles.loginAlert = {'display': 'block'};
+  }
+
   doLogin() {
     event.preventDefault();
     let refs = this.refs;
@@ -29,7 +37,13 @@ class Index extends Component {
       passWord: password
     }
     Common.postMethod('/login', data, (val) => {
-        this.context.router.push('/home');
+        if (!val.OK) {
+          // no data to change the state
+          this.chageLoginAlertState();
+          this.context.router.push('/');
+        } else {
+          this.context.router.push('/home');
+        }
     })
   }
 
@@ -38,23 +52,19 @@ class Index extends Component {
       <div>
         <HeadTop></HeadTop>
         <div className="container" style={Styles.container}>
-          <div id="loginbox" Styles={Styles.loginbox} className="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+          <div id="loginbox" style={Styles.loginbox} className="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
             <div className="panel panel-info" Styles={Styles.panel}>
               <div className="panel-heading">
                 <div className="panel-title"> 登录</div>
               </div>
-              <div Styles={Styles.panelBody} className="panel-body">
-                <div Styles={Styles.loginAlert} id="login-alert" className="alert alert-danger col-sm-12"></div>
+              <div style={Styles.panelBody} className="panel-body">
+                <div style={Styles.loginAlert} id="login-alert" className="alert alert-danger col-sm-12">用户名或密码错误</div>
                 <form id="loginform" className="form-horizontal" role="form" action="" method="POST">
-                  {/*<div className="alert alert-danger" role="alert">
-                    <span className="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                    <span className="sr-only"></span>
-                  </div>*/}
-                  <div Styles={Styles.inputGroup} className="input-group">
+                  <div style={Styles.inputGroup} className="input-group">
                     <span className="input-group-addon"><i className="icon-user"></i></span>
                     <input className="form-control" ref="username" placeholder="用户名" />
                   </div>
-                  <div Styles={Styles.inputGroup} className="input-group">
+                  <div style={Styles.inputGroup} className="input-group">
                     <span className="input-group-addon"><i className="icon-key"></i></span>
                     <input type="password" className="form-control" ref="password"
                       placeholder="密码" />

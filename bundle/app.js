@@ -115,10 +115,15 @@
 
 	  function Index() {
 	    (0, _classCallCheck3.default)(this, Index);
-	    return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Index).apply(this, arguments));
+	    return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Index).call(this));
 	  }
 
 	  (0, _createClass3.default)(Index, [{
+	    key: 'chageLoginAlertState',
+	    value: function chageLoginAlertState() {
+	      Styles.loginAlert = { 'display': 'block' };
+	    }
+	  }, {
 	    key: 'doLogin',
 	    value: function doLogin() {
 	      var _this2 = this;
@@ -132,7 +137,13 @@
 	        passWord: password
 	      };
 	      _common2.default.postMethod('/login', data, function (val) {
-	        _this2.context.router.push('/home');
+	        if (!val.OK) {
+	          // no data to change the state
+	          _this2.chageLoginAlertState();
+	          _this2.context.router.push('/');
+	        } else {
+	          _this2.context.router.push('/home');
+	        }
 	      });
 	    }
 	  }, {
@@ -149,7 +160,7 @@
 	          { className: 'container', style: Styles.container },
 	          _react2.default.createElement(
 	            'div',
-	            { id: 'loginbox', Styles: Styles.loginbox, className: 'mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2' },
+	            { id: 'loginbox', style: Styles.loginbox, className: 'mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2' },
 	            _react2.default.createElement(
 	              'div',
 	              { className: 'panel panel-info', Styles: Styles.panel },
@@ -164,14 +175,18 @@
 	              ),
 	              _react2.default.createElement(
 	                'div',
-	                { Styles: Styles.panelBody, className: 'panel-body' },
-	                _react2.default.createElement('div', { Styles: Styles.loginAlert, id: 'login-alert', className: 'alert alert-danger col-sm-12' }),
+	                { style: Styles.panelBody, className: 'panel-body' },
+	                _react2.default.createElement(
+	                  'div',
+	                  { style: Styles.loginAlert, id: 'login-alert', className: 'alert alert-danger col-sm-12' },
+	                  '用户名或密码错误'
+	                ),
 	                _react2.default.createElement(
 	                  'form',
 	                  { id: 'loginform', className: 'form-horizontal', role: 'form', action: '', method: 'POST' },
 	                  _react2.default.createElement(
 	                    'div',
-	                    { Styles: Styles.inputGroup, className: 'input-group' },
+	                    { style: Styles.inputGroup, className: 'input-group' },
 	                    _react2.default.createElement(
 	                      'span',
 	                      { className: 'input-group-addon' },
@@ -181,7 +196,7 @@
 	                  ),
 	                  _react2.default.createElement(
 	                    'div',
-	                    { Styles: Styles.inputGroup, className: 'input-group' },
+	                    { style: Styles.inputGroup, className: 'input-group' },
 	                    _react2.default.createElement(
 	                      'span',
 	                      { className: 'input-group-addon' },
