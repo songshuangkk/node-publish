@@ -3,14 +3,17 @@ import log4js from 'log4js';
 
 class User {
   queryUser(query) {
-    return function* (next) {
-      DB.query('SELECT * FROM `user` WHERE `user_name` = "' + query.userName + '"', (err, rows, fields)=>{
-        if (err) {
-          logger.error('Query user information error', err);
-        }
-        return rows;
-      })
-    }
+    return new Promise((resolve, reject) => {
+         DB.query('select * from user', (err, rows, fields) => {
+           if (err) {
+             reject();
+           } else {
+             resolve(rows);
+           }
+         });
+       }).then((value) => {
+          return value;
+       });
   }
 }
 

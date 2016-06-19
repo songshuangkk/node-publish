@@ -21,7 +21,7 @@ var config = {
     loaders: [
       { test: /\.json$/, loader: 'json' },
       { test: /\.css$/, loader: "style!css" },
-      { test: /\.jsx?$/,loader:'babel', exclude: /node_modules/}
+      { test: /\.jsx?$/, exclude: /node_modules/, loader:'babel', }
     ]
   }
 }

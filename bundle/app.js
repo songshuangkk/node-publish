@@ -27989,6 +27989,10 @@
 	    // To build the application
 	    value: function build() {
 	      event.preventDefault();
+	      var data = {};
+	      _common2.default.getMethod('/build', data, function (value) {
+	        console.log(value);
+	      });
 	    }
 
 	    // To restart the application

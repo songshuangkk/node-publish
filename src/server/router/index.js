@@ -1,6 +1,7 @@
 import router from 'koa-router';
 import User from '../db/user';
 import ConfigService from '../service/configService';
+import DeployService from '../service/DeployService';
 
 const routers = router();
 
@@ -10,7 +11,7 @@ routers.get('/', function *(next) {
 
 routers.post('/login', function *(next) {
   const request = this.request.body;
-  let rows = yield User.queryUser(request)();
+  let rows = User.queryUser(request);
   if (rows === void 0 || rows.length == 0) {
     this.body = {OK: false}
   } else {
@@ -29,7 +30,10 @@ routers.post('/editEnv', function *(next) {
 
 // build application
 routers.get('/build', function *(next) {
-
+  DeployService.build();
+  this.body = {
+    OK: 'OK'
+  }
 });
 
 // deploy application

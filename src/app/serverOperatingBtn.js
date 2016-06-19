@@ -12,6 +12,10 @@ class ServerOperatingBtn extends Component {
   // To build the application
   build() {
     event.preventDefault();
+    var data = {};
+    Common.getMethod('/build', data, (value) => {
+      console.log(value);
+    });
   }
 
   // To restart the application

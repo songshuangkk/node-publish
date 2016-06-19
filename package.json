@@ -21,6 +21,8 @@
     "babel-preset-react": "^6.5.0",
     "babel-preset-stage-2": "^6.5.0",
     "babel-register": "^6.9.0",
+    "co": "^4.6.0",
+    "co-mysql": "^1.0.0",
     "css-loader": "^0.23.1",
     "fs": "0.0.2",
     "json-loader": "^0.5.4",
