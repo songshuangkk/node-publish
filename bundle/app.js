@@ -86,15 +86,15 @@
 
 	var _home2 = _interopRequireDefault(_home);
 
-	var _config = __webpack_require__(321);
+	var _config = __webpack_require__(323);
 
 	var _config2 = _interopRequireDefault(_config);
 
-	var _deployLog = __webpack_require__(322);
+	var _deployLog = __webpack_require__(324);
 
 	var _deployLog2 = _interopRequireDefault(_deployLog);
 
-	var _applicationLog = __webpack_require__(323);
+	var _applicationLog = __webpack_require__(325);
 
 	var _applicationLog2 = _interopRequireDefault(_applicationLog);
 
@@ -238,9 +238,6 @@
 	Index.contextTypes = {
 	  router: _react2.default.PropTypes.object
 	};
-
-	var socket = io.connect('http://localhost:8888');
-	socket.emit('send message', { message: 'halsdfsa' });
 
 	_reactDom2.default.render(_react2.default.createElement(
 	  _reactRouter.Router,
@@ -27966,6 +27963,10 @@
 
 	var _common2 = _interopRequireDefault(_common);
 
+	var _socket = __webpack_require__(321);
+
+	var _socket2 = _interopRequireDefault(_socket);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var Styles = {
@@ -28005,6 +28006,8 @@
 	  }, {
 	    key: 'showDeployLog',
 	    value: function showDeployLog() {
+	      _socket2.default.emit('deployLog', { message: 'halsdfsa' });
+	      _socket2.default.on('getDeployLog', function (msg) {});
 	      this.context.router.push('/deployLog');
 	    }
 	    // To show application log
@@ -28190,6 +28193,35 @@
 	  value: true
 	});
 
+	var _appEnvConfig = __webpack_require__(322);
+
+	var _appEnvConfig2 = _interopRequireDefault(_appEnvConfig);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = io.connect(_appEnvConfig2.default.SOCKET_HOST);
+
+/***/ },
+/* 322 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(module) {'use strict';
+
+	module.export = {
+	  SOCKET_HOST: 'http://localhost:8888'
+	};
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(326)(module)))
+
+/***/ },
+/* 323 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
 	var _getPrototypeOf = __webpack_require__(1);
 
 	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
@@ -28359,7 +28391,7 @@
 	exports.default = Config;
 
 /***/ },
-/* 322 */
+/* 324 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28427,7 +28459,7 @@
 	exports.default = DeployLog;
 
 /***/ },
-/* 323 */
+/* 325 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28493,6 +28525,22 @@
 	}(_react.Component);
 
 	exports.default = ApplicationLog;
+
+/***/ },
+/* 326 */
+/***/ function(module, exports) {
+
+	module.exports = function(module) {
+		if(!module.webpackPolyfill) {
+			module.deprecate = function() {};
+			module.paths = [];
+			// module.parent = undefined by default
+			module.children = [];
+			module.webpackPolyfill = 1;
+		}
+		return module;
+	}
+
 
 /***/ }
 /******/ ]);

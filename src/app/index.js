@@ -90,10 +90,6 @@ Index.contextTypes = {
   router: React.PropTypes.object
 }
 
-var socket = io.connect('http://localhost:8888');
-socket.emit('send message', {message: 'halsdfsa'});
-
-
 ReactDOM.render((
   <Router history={hashHistory}>
     <Route path="/" component={Index}/>

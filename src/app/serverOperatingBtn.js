@@ -1,6 +1,8 @@
 import React, {Component, PropTypes} from 'react';
 import Common from './common';
 
+import SOCKET from './socket';
+
 const Styles = {
   'panelDefault': {'border': '2px solid #7EB3CE'},
   'nginxPort': {'width': '50px'},
@@ -24,6 +26,10 @@ class ServerOperatingBtn extends Component {
   }
   // To show deploy log
   showDeployLog() {
+    SOCKET.emit('deployLog', {message: 'halsdfsa'});
+    SOCKET.on('getDeployLog', (msg) => {
+      
+    })
     this.context.router.push('/deployLog');
   }
   // To show application log
@@ -100,5 +106,9 @@ class ServerOperatingBtn extends Component {
 ServerOperatingBtn.contextTypes = {
   router: React.PropTypes.object
 }
+
+
+
+
 
 export default ServerOperatingBtn;
