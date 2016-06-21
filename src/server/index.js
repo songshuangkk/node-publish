@@ -10,6 +10,7 @@ import path from 'path';
 
 import CONFIG from './config';
 import router from './router/index';
+import socket from './socket';
 
 const app = koa();
 const logger = log4js.getLogger(app);
@@ -36,13 +37,7 @@ app.use(router.routes());
 // To use socket.io
 const io = socketIo(appServer);
 
-io.on('connection', function (socket) {
-  socket.emit('news', { hello: 'world' });
-  socket.on('my other event', function (data) {
-    console.log(data);
-  });
-});
-
+socket(io);
 
 appServer.listen(CONFIG.port, () => {
   logger.info('The server started at the port['+ CONFIG.port + ']');

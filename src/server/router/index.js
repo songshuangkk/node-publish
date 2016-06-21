@@ -41,5 +41,15 @@ routers.get('/deploy', function *(next) {
 
 });
 
+// show deploy logs
+routers.get('/deployLog', function *(next) {
+
+});
+
+// show application logs
+routers.get('/applicationLog', function *(next) {
+
+});
+
 
 export default routers;

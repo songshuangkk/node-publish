@@ -12,11 +12,20 @@ class DeployService {
       } else if (stderr) {
         logger.error(stderr);
       } else {
+        resolve(stdout);
       }
-    }).then() {
+    }).then((stdout) => {
 
-    }
+    });
   });
+  }
+
+  deployLog() {
+
+  }
+
+  applicationLog() {
+
   }
 }
 var deployService = new DeployService()
