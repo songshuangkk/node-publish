@@ -86,15 +86,15 @@
 
 	var _home2 = _interopRequireDefault(_home);
 
-	var _config = __webpack_require__(323);
+	var _config = __webpack_require__(324);
 
 	var _config2 = _interopRequireDefault(_config);
 
-	var _deployLog = __webpack_require__(324);
+	var _deployLog = __webpack_require__(325);
 
 	var _deployLog2 = _interopRequireDefault(_deployLog);
 
-	var _applicationLog = __webpack_require__(325);
+	var _applicationLog = __webpack_require__(326);
 
 	var _applicationLog2 = _interopRequireDefault(_applicationLog);
 
@@ -28210,10 +28210,26 @@
 	module.export = {
 	  SOCKET_HOST: 'http://localhost:8888'
 	};
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(326)(module)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(323)(module)))
 
 /***/ },
 /* 323 */
+/***/ function(module, exports) {
+
+	module.exports = function(module) {
+		if(!module.webpackPolyfill) {
+			module.deprecate = function() {};
+			module.paths = [];
+			// module.parent = undefined by default
+			module.children = [];
+			module.webpackPolyfill = 1;
+		}
+		return module;
+	}
+
+
+/***/ },
+/* 324 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28391,7 +28407,7 @@
 	exports.default = Config;
 
 /***/ },
-/* 324 */
+/* 325 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28430,6 +28446,8 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	var Styles = {};
+
 	var DeployLog = function (_Component) {
 	  (0, _inherits3.default)(DeployLog, _Component);
 
@@ -28445,11 +28463,9 @@
 	        'div',
 	        null,
 	        _react2.default.createElement(_headTop2.default, null),
-	        _react2.default.createElement(
-	          'h1',
-	          null,
-	          'DeployLog'
-	        )
+	        _react2.default.createElement('input', { type: 'checkbox', id: 'auto_scroll_bottom_checkbox', checked: 'checked' }),
+	        ' 自动滚动到底部',
+	        _react2.default.createElement('textarea', { id: 'log', style: 'width:100%; height: 40em; overflow-y: scroll;', readonly: 'readonly' })
 	      );
 	    }
 	  }]);
@@ -28459,7 +28475,7 @@
 	exports.default = DeployLog;
 
 /***/ },
-/* 325 */
+/* 326 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28525,22 +28541,6 @@
 	}(_react.Component);
 
 	exports.default = ApplicationLog;
-
-/***/ },
-/* 326 */
-/***/ function(module, exports) {
-
-	module.exports = function(module) {
-		if(!module.webpackPolyfill) {
-			module.deprecate = function() {};
-			module.paths = [];
-			// module.parent = undefined by default
-			module.children = [];
-			module.webpackPolyfill = 1;
-		}
-		return module;
-	}
-
 
 /***/ }
 /******/ ]);
