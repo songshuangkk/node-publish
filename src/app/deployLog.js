@@ -2,16 +2,23 @@ import React, {Component, PropTypes} from 'react';
 import HeadTop from './headTop';
 
 const Styles = {
-  
+  logStyles: {'width': '100%', 'height': '40em', 'overflowY': 'scroll'},
+  'container': {'marginTop': '100px'}
 };
 
 class DeployLog extends Component {
+  constructor () {
+    super();
+  }
+
   render() {
     return (
       <div>
         <HeadTop></HeadTop>
-        <input type="checkbox" id="auto_scroll_bottom_checkbox" checked="checked"/> 自动滚动到底部
-        <textarea id="log" style="width:100%; height: 40em; overflow-y: scroll;" readonly="readonly"></textarea>
+        <div style={Styles.container}>
+          <input type="checkbox" checked/> 自动滚动到底部
+          <textarea id="log" style={Styles.logStyles}></textarea>
+        </div>
       </div>
     );
   }

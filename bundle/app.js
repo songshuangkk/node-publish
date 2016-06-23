@@ -28446,14 +28446,17 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var Styles = {};
+	var Styles = {
+	  logStyles: { 'width': '100%', 'height': '40em', 'overflowY': 'scroll' },
+	  'container': { 'marginTop': '100px' }
+	};
 
 	var DeployLog = function (_Component) {
 	  (0, _inherits3.default)(DeployLog, _Component);
 
 	  function DeployLog() {
 	    (0, _classCallCheck3.default)(this, DeployLog);
-	    return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(DeployLog).apply(this, arguments));
+	    return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(DeployLog).call(this));
 	  }
 
 	  (0, _createClass3.default)(DeployLog, [{
@@ -28463,9 +28466,13 @@
 	        'div',
 	        null,
 	        _react2.default.createElement(_headTop2.default, null),
-	        _react2.default.createElement('input', { type: 'checkbox', id: 'auto_scroll_bottom_checkbox', checked: 'checked' }),
-	        ' 自动滚动到底部',
-	        _react2.default.createElement('textarea', { id: 'log', style: 'width:100%; height: 40em; overflow-y: scroll;', readonly: 'readonly' })
+	        _react2.default.createElement(
+	          'div',
+	          { style: Styles.container },
+	          _react2.default.createElement('input', { type: 'checkbox', checked: true }),
+	          ' 自动滚动到底部',
+	          _react2.default.createElement('textarea', { id: 'log', style: Styles.logStyles })
+	        )
 	      );
 	    }
 	  }]);
@@ -28514,6 +28521,11 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	var Styles = {
+	  logStyles: { 'width': '100%', 'height': '40em', 'overflowY': 'scroll' },
+	  'container': { 'marginTop': '100px' }
+	};
+
 	var ApplicationLog = function (_Component) {
 	  (0, _inherits3.default)(ApplicationLog, _Component);
 
@@ -28530,9 +28542,11 @@
 	        null,
 	        _react2.default.createElement(_headTop2.default, null),
 	        _react2.default.createElement(
-	          'h1',
+	          'div',
 	          null,
-	          'ApplicationLog'
+	          _react2.default.createElement('input', { type: 'checkbox', checked: true }),
+	          ' 自动滚动到底部',
+	          _react2.default.createElement('textarea', { id: 'log', style: Styles.logStyles })
 	        )
 	      );
 	    }
