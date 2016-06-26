@@ -5,16 +5,27 @@ const Styles = {
   'panelDefault': {'border': '2px solid #7EB3CE'},
   'nginxPort': {'width': '50px'},
   'progressInfoContainer': {'display': 'none'},
-  'colLg': {'marginTop': '100px'}
+  'colLg': {'marginTop': '100px'},
+  'buildPid': {'color': 'red'}
 }
 
 class ServerOperatingBtn extends Component {
+
+  constructor() {
+    super();
+    this.state = {
+      buildPid: ''
+    }
+  }
+
   // To build the application
   build() {
     event.preventDefault();
     var data = {};
     Common.getMethod('/build', data, (value) => {
-      console.log(value);
+      this.setState({
+        buildPid: value.pid
+      });
     });
   }
 
@@ -24,7 +35,12 @@ class ServerOperatingBtn extends Component {
   }
   // To show deploy log
   showDeployLog() {
-    this.context.router.push('/deployLog');
+    this.context.router.push({
+      pathname: '/deployLog',
+      query: {
+        buildPid: this.state.buildPid
+      }
+    });
   }
   // To show application log
   showApplicationLog() {
@@ -37,12 +53,12 @@ class ServerOperatingBtn extends Component {
         <div className="panel panel-default" style={Styles.panelDefault}>
           <div className="panel-heading" data-id="" data-port="">
             <h2><label>部署端口：</label><a href="http://haimaiche.com" target="_blank"></a></h2>
-            <span className="label" id="pid-info" data-id=""></span>
-            <span className="label" id="http-status-info" data-id=""></span>
+            <span className="label" id="pid-info"></span>
+            <span className="label" id="http-status-info"></span>
           </div>
           <div className="panel-body">
             <div>
-              <p><label>分支：</label>&nbsp;&nbsp;&nbsp;<label>描述：</label></p>
+              <p><label>分支：</label>&nbsp;&nbsp;&nbsp;<label>描述：</label>&nbsp;&nbsp;&nbsp;&nbsp;<label>部署进程：<span style={Styles.buildPid}>{this.state.buildPid}</span></label></p>
             </div>
             <div className="alert alert-info" id="progress_info_container" data-id="" style={Styles.progressInfoContainer}>
               <button type="button" className="close" data-dismiss="alert">×</button>

@@ -30,9 +30,10 @@ routers.post('/editEnv', function *(next) {
 
 // build application
 routers.get('/build', function *(next) {
-  DeployService.build();
+  const pid = DeployService.build();
   this.body = {
-    OK: 'OK'
+    OK: 'OK',
+    pid: pid
   }
 });
 

@@ -27969,7 +27969,8 @@
 	  'panelDefault': { 'border': '2px solid #7EB3CE' },
 	  'nginxPort': { 'width': '50px' },
 	  'progressInfoContainer': { 'display': 'none' },
-	  'colLg': { 'marginTop': '100px' }
+	  'colLg': { 'marginTop': '100px' },
+	  'buildPid': { 'color': 'red' }
 	};
 
 	var ServerOperatingBtn = function (_Component) {
@@ -27977,18 +27978,29 @@
 
 	  function ServerOperatingBtn() {
 	    (0, _classCallCheck3.default)(this, ServerOperatingBtn);
-	    return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(ServerOperatingBtn).apply(this, arguments));
+
+	    var _this = (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(ServerOperatingBtn).call(this));
+
+	    _this.state = {
+	      buildPid: ''
+	    };
+	    return _this;
 	  }
+
+	  // To build the application
+
 
 	  (0, _createClass3.default)(ServerOperatingBtn, [{
 	    key: 'build',
-
-	    // To build the application
 	    value: function build() {
+	      var _this2 = this;
+
 	      event.preventDefault();
 	      var data = {};
 	      _common2.default.getMethod('/build', data, function (value) {
-	        console.log(value);
+	        _this2.setState({
+	          buildPid: value.pid
+	        });
 	      });
 	    }
 
@@ -28002,7 +28014,12 @@
 	  }, {
 	    key: 'showDeployLog',
 	    value: function showDeployLog() {
-	      this.context.router.push('/deployLog');
+	      this.context.router.push({
+	        pathname: '/deployLog',
+	        query: {
+	          buildPid: this.state.buildPid
+	        }
+	      });
 	    }
 	    // To show application log
 
@@ -28014,7 +28031,7 @@
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	      var _this2 = this;
+	      var _this3 = this;
 
 	      return _react2.default.createElement(
 	        'div',
@@ -28035,8 +28052,8 @@
 	              ),
 	              _react2.default.createElement('a', { href: 'http://haimaiche.com', target: '_blank' })
 	            ),
-	            _react2.default.createElement('span', { className: 'label', id: 'pid-info', 'data-id': '' }),
-	            _react2.default.createElement('span', { className: 'label', id: 'http-status-info', 'data-id': '' })
+	            _react2.default.createElement('span', { className: 'label', id: 'pid-info' }),
+	            _react2.default.createElement('span', { className: 'label', id: 'http-status-info' })
 	          ),
 	          _react2.default.createElement(
 	            'div',
@@ -28057,6 +28074,17 @@
 	                  'label',
 	                  null,
 	                  '描述：'
+	                ),
+	                '    ',
+	                _react2.default.createElement(
+	                  'label',
+	                  null,
+	                  '部署进程：',
+	                  _react2.default.createElement(
+	                    'span',
+	                    { style: Styles.buildPid },
+	                    this.state.buildPid
+	                  )
 	                )
 	              )
 	            ),
@@ -28087,7 +28115,7 @@
 	                { className: 'btn btn-primary btn-sm', id: 'btn-build',
 	                  'data-command-name': 'build',
 	                  'data-build-uid': '', onClick: function onClick() {
-	                    _this2.build();
+	                    _this3.build();
 	                  } },
 	                _react2.default.createElement('i', { className: 'icon-play' }),
 	                '开始部署'
@@ -28106,7 +28134,7 @@
 	                  'data-command-name': 'restart',
 	                  'data-build-uid': '',
 	                  onClick: function onClick() {
-	                    _this2.restart();
+	                    _this3.restart();
 	                  }
 	                },
 	                _react2.default.createElement('i', { className: 'icon-step-forward' }),
@@ -28117,7 +28145,7 @@
 	                { className: 'btn btn-primary btn-sm show-log', target: '_blank',
 	                  'data-log-file': '',
 	                  onClick: function onClick() {
-	                    _this2.showDeployLog();
+	                    _this3.showDeployLog();
 	                  }
 	                },
 	                _react2.default.createElement('i', { className: 'icon-eye-open' }),
@@ -28127,7 +28155,7 @@
 	                'a',
 	                { className: 'btn btn-primary btn-sm show-log', target: '_blank',
 	                  'data-log-file': '', onClick: function onClick() {
-	                    _this2.showApplicationLog();
+	                    _this3.showApplicationLog();
 	                  } },
 	                _react2.default.createElement('i', { className: 'icon-eye-open' }),
 	                ' 应用日志'
@@ -28373,13 +28401,13 @@
 
 	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-	var _createClass2 = __webpack_require__(28);
-
-	var _createClass3 = _interopRequireDefault(_createClass2);
-
 	var _possibleConstructorReturn2 = __webpack_require__(32);
 
 	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+	var _createClass2 = __webpack_require__(28);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
 
 	var _inherits2 = __webpack_require__(79);
 
@@ -28406,6 +28434,17 @@
 
 	var DeployLog = function (_Component) {
 	  (0, _inherits3.default)(DeployLog, _Component);
+	  (0, _createClass3.default)(DeployLog, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      // To get build pid
+	      this.state.buildPid = this.props.location.query.buildPid;
+	      _socket2.default.emit('deployLog', { buildPid: this.state.buildPid });
+	      _socket2.default.on('getDeployLog', function (msg) {
+	        console.log(msg);
+	      });
+	    }
+	  }]);
 
 	  function DeployLog() {
 	    (0, _classCallCheck3.default)(this, DeployLog);
@@ -28416,11 +28455,6 @@
 	      textarea: '',
 	      checked: 'checked'
 	    };
-
-	    _socket2.default.emit('deployLog', { message: 'halsdfsa' });
-	    _socket2.default.on('getDeployLog', function (msg) {
-	      console.log(msg);
-	    });
 	    return _this;
 	  }
 

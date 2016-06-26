@@ -9,18 +9,21 @@ const Styles = {
 
 class DeployLog extends Component {
 
+  componentDidMount() {
+    // To get build pid
+    this.state.buildPid =  this.props.location.query.buildPid;
+    SOCKET.emit('deployLog', {buildPid: this.state.buildPid});
+    SOCKET.on('getDeployLog', (msg) => {
+        console.log(msg);
+    });
+  }
+
   constructor () {
     super();
-
     this.state = {
       textarea: '',
       checked: 'checked'
     }
-
-    SOCKET.emit('deployLog', {message: 'halsdfsa'});
-    SOCKET.on('getDeployLog', (msg) => {
-        console.log(msg);
-    });
   }
 
   checkBoxChange(event) {
