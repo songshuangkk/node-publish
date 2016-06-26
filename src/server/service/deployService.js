@@ -4,9 +4,18 @@ import {spawn, exec} from 'child_process';
 import log4js from 'log4js';
 
 class DeployService {
+  // Return pid to get message for log
   build(option) {
-    const cd  = spawn('cd', ['/Users/songshuang/IdeaProjects/maybach'], ['&&', 'mvn', 'package']);
-    console.log(cd.pid);
+    const build  = exec('cd /Users/songshuang/IdeaProjects/maybach && mvn package');
+    build.stdout.on('data', (data) => {
+      console.log(data);
+    });
+
+    build.stderr.on('data', (data) => {
+      logger.error(data);
+    });
+
+    return build.pid;
   }
 
   deployLog() {
