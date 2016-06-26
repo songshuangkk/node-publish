@@ -1,5 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import HeadTop from './headTop';
+import SOCKET from './socket';
 
 const Styles = {
   logStyles: {'width': '100%', 'height': '40em', 'overflowY': 'scroll'},
@@ -7,8 +8,23 @@ const Styles = {
 };
 
 class DeployLog extends Component {
+
   constructor () {
     super();
+
+    this.state = {
+      textarea: '',
+      checked: 'checked'
+    }
+
+    SOCKET.emit('deployLog', {message: 'halsdfsa'});
+    SOCKET.on('getDeployLog', (msg) => {
+        console.log(msg);
+    });
+  }
+
+  checkBoxChange(event) {
+    // this.setState({checked: true})
   }
 
   render() {
@@ -16,8 +32,8 @@ class DeployLog extends Component {
       <div>
         <HeadTop></HeadTop>
         <div style={Styles.container}>
-          <input type="checkbox" checked/> 自动滚动到底部
-          <textarea id="log" style={Styles.logStyles}></textarea>
+          <input type="checkbox" onChange={()=> {this.checkBoxChange()}}/> 自动滚动到底部
+          <textarea id="log" style={Styles.logStyles} defaultValue={this.state.textarea}></textarea>
         </div>
       </div>
     );

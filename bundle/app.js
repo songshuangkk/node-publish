@@ -86,11 +86,11 @@
 
 	var _home2 = _interopRequireDefault(_home);
 
-	var _config = __webpack_require__(324);
+	var _config = __webpack_require__(321);
 
 	var _config2 = _interopRequireDefault(_config);
 
-	var _deployLog = __webpack_require__(325);
+	var _deployLog = __webpack_require__(322);
 
 	var _deployLog2 = _interopRequireDefault(_deployLog);
 
@@ -27963,10 +27963,6 @@
 
 	var _common2 = _interopRequireDefault(_common);
 
-	var _socket = __webpack_require__(321);
-
-	var _socket2 = _interopRequireDefault(_socket);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var Styles = {
@@ -28006,8 +28002,6 @@
 	  }, {
 	    key: 'showDeployLog',
 	    value: function showDeployLog() {
-	      _socket2.default.emit('deployLog', { message: 'halsdfsa' });
-	      _socket2.default.on('getDeployLog', function (msg) {});
 	      this.context.router.push('/deployLog');
 	    }
 	    // To show application log
@@ -28193,51 +28187,6 @@
 	  value: true
 	});
 
-	var _appEnvConfig = __webpack_require__(322);
-
-	var _appEnvConfig2 = _interopRequireDefault(_appEnvConfig);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	exports.default = io.connect(_appEnvConfig2.default.SOCKET_HOST);
-
-/***/ },
-/* 322 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(module) {'use strict';
-
-	module.export = {
-	  SOCKET_HOST: 'http://localhost:8888'
-	};
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(323)(module)))
-
-/***/ },
-/* 323 */
-/***/ function(module, exports) {
-
-	module.exports = function(module) {
-		if(!module.webpackPolyfill) {
-			module.deprecate = function() {};
-			module.paths = [];
-			// module.parent = undefined by default
-			module.children = [];
-			module.webpackPolyfill = 1;
-		}
-		return module;
-	}
-
-
-/***/ },
-/* 324 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
 	var _getPrototypeOf = __webpack_require__(1);
 
 	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
@@ -28407,7 +28356,7 @@
 	exports.default = Config;
 
 /***/ },
-/* 325 */
+/* 322 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28444,6 +28393,10 @@
 
 	var _headTop2 = _interopRequireDefault(_headTop);
 
+	var _socket = __webpack_require__(323);
+
+	var _socket2 = _interopRequireDefault(_socket);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var Styles = {
@@ -28456,12 +28409,31 @@
 
 	  function DeployLog() {
 	    (0, _classCallCheck3.default)(this, DeployLog);
-	    return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(DeployLog).call(this));
+
+	    var _this = (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(DeployLog).call(this));
+
+	    _this.state = {
+	      textarea: '',
+	      checked: 'checked'
+	    };
+
+	    _socket2.default.emit('deployLog', { message: 'halsdfsa' });
+	    _socket2.default.on('getDeployLog', function (msg) {
+	      console.log(msg);
+	    });
+	    return _this;
 	  }
 
 	  (0, _createClass3.default)(DeployLog, [{
+	    key: 'checkBoxChange',
+	    value: function checkBoxChange(event) {
+	      // this.setState({checked: true})
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
+	      var _this2 = this;
+
 	      return _react2.default.createElement(
 	        'div',
 	        null,
@@ -28469,9 +28441,11 @@
 	        _react2.default.createElement(
 	          'div',
 	          { style: Styles.container },
-	          _react2.default.createElement('input', { type: 'checkbox', checked: true }),
+	          _react2.default.createElement('input', { type: 'checkbox', onChange: function onChange() {
+	              _this2.checkBoxChange();
+	            } }),
 	          ' 自动滚动到底部',
-	          _react2.default.createElement('textarea', { id: 'log', style: Styles.logStyles })
+	          _react2.default.createElement('textarea', { id: 'log', style: Styles.logStyles, defaultValue: this.state.textarea })
 	        )
 	      );
 	    }
@@ -28480,6 +28454,51 @@
 	}(_react.Component);
 
 	exports.default = DeployLog;
+
+/***/ },
+/* 323 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _appEnvConfig = __webpack_require__(324);
+
+	var _appEnvConfig2 = _interopRequireDefault(_appEnvConfig);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = io.connect(_appEnvConfig2.default.SOCKET_HOST);
+
+/***/ },
+/* 324 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(module) {'use strict';
+
+	module.export = {
+	  SOCKET_HOST: 'http://localhost:8888'
+	};
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(325)(module)))
+
+/***/ },
+/* 325 */
+/***/ function(module, exports) {
+
+	module.exports = function(module) {
+		if(!module.webpackPolyfill) {
+			module.deprecate = function() {};
+			module.paths = [];
+			// module.parent = undefined by default
+			module.children = [];
+			module.webpackPolyfill = 1;
+		}
+		return module;
+	}
+
 
 /***/ },
 /* 326 */
@@ -28519,6 +28538,10 @@
 
 	var _headTop2 = _interopRequireDefault(_headTop);
 
+	var _socket = __webpack_require__(323);
+
+	var _socket2 = _interopRequireDefault(_socket);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var Styles = {
@@ -28531,7 +28554,16 @@
 
 	  function ApplicationLog() {
 	    (0, _classCallCheck3.default)(this, ApplicationLog);
-	    return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(ApplicationLog).apply(this, arguments));
+
+	    var _this = (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(ApplicationLog).call(this));
+
+	    _socket2.default.emit('applicationLog', { message: 'halsdfsa' });
+	    _socket2.default.on('getApplicationLog', function (msg) {});
+
+	    _this.state = {
+	      textarea: ''
+	    };
+	    return _this;
 	  }
 
 	  (0, _createClass3.default)(ApplicationLog, [{
@@ -28546,7 +28578,7 @@
 	          null,
 	          _react2.default.createElement('input', { type: 'checkbox', checked: true }),
 	          ' 自动滚动到底部',
-	          _react2.default.createElement('textarea', { id: 'log', style: Styles.logStyles })
+	          _react2.default.createElement('textarea', { id: 'log', style: Styles.logStyles, value: this.state.textarea })
 	        )
 	      );
 	    }

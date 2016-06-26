@@ -30,7 +30,7 @@ routers.post('/editEnv', function *(next) {
 
 // build application
 routers.get('/build', function *(next) {
-  // DeployService.build();
+  DeployService.build();
   this.body = {
     OK: 'OK'
   }

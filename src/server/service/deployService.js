@@ -5,19 +5,8 @@ import log4js from 'log4js';
 
 class DeployService {
   build(option) {
-    new Promise((resolve, reject) => {
-      exec('git clone http://git.dawanju.net/mhc/maybach.git /Users/songshuang/self/node/maybach', (error, stdout, stderr) => {
-      if (error) {
-          logger.error(error);
-      } else if (stderr) {
-        logger.error(stderr);
-      } else {
-        resolve(stdout);
-      }
-    }).then((stdout) => {
-
-    });
-  });
+    const cd  = spawn('cd', ['/Users/songshuang/IdeaProjects/maybach'], ['&&', 'mvn', 'package']);
+    console.log(cd.pid);
   }
 
   deployLog() {
