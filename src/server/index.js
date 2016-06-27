@@ -29,6 +29,8 @@ render(app, {
 require('./db/index');
 // To connect Mongodb
 require('./mongo/index');
+// To connect Redis
+require('./redis/index');
 
 app.use(server(path.join(__dirname, '../../bundle')));
 
@@ -37,7 +39,12 @@ app.use(router.routes());
 // To use socket.io
 const io = socketIo(appServer);
 
-socket(io);
+app.use(socket(io));
+
+app.use(function* (next) {
+  console.log(22);
+  console.log(this.context.socket);
+});
 
 appServer.listen(CONFIG.port, () => {
   logger.info('The server started at the port['+ CONFIG.port + ']');

@@ -2,11 +2,13 @@
 import cluster from 'cluster';
 import {spawn, exec} from 'child_process';
 import log4js from 'log4js';
+import redis from '../redis/index';
 
 class DeployService {
   // Return pid to get message for log
   build(option) {
     const build  = exec('cd /Users/songshuang/IdeaProjects/maybach && mvn package');
+
     build.stdout.on('data', (data) => {
       console.log(data);
     });

@@ -12,5 +12,10 @@ export default {
     password: '123456',
     database: ''
   },
+  Redis: {
+    host: '192.168.99.100',
+    port: '6379',
+    password: '123456'
+  },
   SocketPort: 3333
 }
